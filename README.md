@@ -1,16 +1,41 @@
-# file_manager
+# File Manager
 
-A new Flutter project.
+Простой файловый менеджер на связке Flutter - Rust
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Dependencies
 
-A few resources to get you started if this is your first Flutter project:
+* [Rust 1.79.0](https://www.rust-lang.org/)
+* [Flutter 3.22.2](https://docs.flutter.dev/get-started/install)
+* [Flutter Rust Bridge 2.3.0](https://cjycode.com/flutter_rust_bridge/)
+```
+cargo install flutter_rust_bridge_codege
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Build
+Сгенерировать FFI:
+```sh
+flutter_rust_bridge_codegen generate
+```
+Запустить
+```sh
+flutter run
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## API
+Всё сгенерированное API находится в `lib/src/rust`
+
+```dart
+String greet({required String name});
+
+void createFile({required String path});
+
+void createFileWithContent({required String path, required String content});
+
+String readFile({required String path});
+
+void updateFile({required String path, required String content});
+
+void deleteFile({required String path});
+```
