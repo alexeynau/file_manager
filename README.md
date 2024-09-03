@@ -23,9 +23,16 @@ flutter_rust_bridge_codegen generate
 flutter run
 ```
 
+### Testing
+Тестирование Rust библиотеки
+```sh
+cd rust
+cargo test -- --test-threads 1
+```
+
 ## API
 Всё сгенерированное API находится в `lib/src/rust`
-
+Функции также могут прокидывать исключения
 ```dart
 String greet({required String name});
 
@@ -38,4 +45,16 @@ String readFile({required String path});
 void updateFile({required String path, required String content});
 
 void deleteFile({required String path});
+
+File readFile({required String path});
+
+void updateFile({required String path, required String content});
+
+void deleteFile({required String path});
+
+void createDir({required String path});
+
+List<File> listAll({required String path});
+
+void deleteDir({required String path});
 ```

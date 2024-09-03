@@ -1,4 +1,4 @@
-use crate::file_manager;
+use crate::file_manager::{self, file_manager::File};
 
 #[flutter_rust_bridge::frb(sync)] // Synchronous mode for simplicity of the demo
 pub fn greet(name: String) -> String {
@@ -16,7 +16,7 @@ pub fn create_file_with_content(path: &str, content: &str) -> Result<(), std::io
 }
 
 #[flutter_rust_bridge::frb(sync)]
-pub fn read_file(path: &str) -> Result<String, std::io::Error> {
+pub fn read_file(path: &str) -> Result<File, std::io::Error> {
     file_manager::file_manager::FileManager::read_file(path)
 }
 
@@ -28,6 +28,21 @@ pub fn update_file(path: &str, content: &str) -> Result<(), std::io::Error> {
 #[flutter_rust_bridge::frb(sync)]
 pub fn delete_file(path: &str) -> Result<(), std::io::Error> {
     file_manager::file_manager::FileManager::delete_file(path)
+}
+
+#[flutter_rust_bridge::frb(sync)]
+pub fn create_dir(path: &str) -> Result<(), std::io::Error> {
+    file_manager::file_manager::FileManager::create_dir(path)
+}
+
+#[flutter_rust_bridge::frb(sync)]
+pub fn list_all(path: &str) -> Result<Vec<File>, std::io::Error> {
+    file_manager::file_manager::FileManager::list_all(path)
+}
+
+#[flutter_rust_bridge::frb(sync)]
+pub fn delete_dir(path: &str) -> Result<(), std::io::Error> {
+    file_manager::file_manager::FileManager::delete_dir(path)
 }
 
 #[flutter_rust_bridge::frb(init)]
